@@ -8,8 +8,8 @@ import experiences from './experiences';
 
 export default function Home() {
   const [isHovered, setIsHovered] = useState(false);
-  const [tooltipText, setTooltipText] = useState("email@gowtham.ai");
-  const email = "email@gowtham.ai";
+  const [tooltipText, setTooltipText] = useState("hello@gowtham.ai");
+  const email = "hello@gowtham.ai";
   const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {

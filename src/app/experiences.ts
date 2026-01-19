@@ -1,6 +1,16 @@
 const experiences = [
+{
+    year: "2025 - Present",
+  position: "Meta - Software Engineer",
+  description:
+    "Handle instagram account compromise",
+  tags: [
+    "Hack",
+    "Python"
+  ],
+  },
     {
-      year: "2019 - present",
+      year: "2019 - 2025",
       position: "Amazon - Software Development Engineer",
       description:
         "Fullstack development of Amazon pharmacy signup component. Implemented reusable CDK components to create AWS infrastructure for ETL data pipelines for Amazon support center.",
@@ -8,7 +18,7 @@ const experiences = [
         "Java",
         "Spring-boot",
         "React",
-        "CDK",
+        "CDK", 
         "CICD",
         "Lambda",
         "EC2",
