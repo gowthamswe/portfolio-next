@@ -1,101 +1,84 @@
-"use client";
+import { AiOutlineLinkedin, AiFillGithub, AiOutlineFileText } from 'react-icons/ai';
+import './styles.css';
+import timeline from './timeline';
+import CopyEmailButton from './CopyEmailButton';
 
-import { useState, useEffect } from 'react';
-import { AiOutlineLinkedin, AiFillGithub, AiOutlineMail, AiOutlineCopy } from 'react-icons/ai';
-import ParticlesComponent from './ParticlesComponent'; // Import the new particles component
-import './styles.css'; // Import the CSS file
-import experiences from './experiences';
+const EMAIL = "hello@gowtham.ai";
 
 export default function Home() {
-  const [isHovered, setIsHovered] = useState(false);
-  const [tooltipText, setTooltipText] = useState("hello@gowtham.ai");
-  const email = "hello@gowtham.ai";
-  const [isClient, setIsClient] = useState(false);
-
-  useEffect(() => {
-    setIsClient(true);
-  }, []);
-
-  const handleCopyEmail = () => {
-    navigator.clipboard.writeText(email);
-    setTooltipText("Email copied!");
-    setTimeout(() => setTooltipText(email), 2000);
-  };
-
   return (
-    <div className="min-h-screen bg-[rgb(15,23,42)] flex justify-center relative">
-      {isClient && <ParticlesComponent />} {/* Use the new particles component */}
-      <div className="max-w-[1400px] w-full flex flex-col md:flex-row container relative z-10">
-        <div className="w-full md:w-[30vw] flex flex-col justify-between pt-[100px] pl-4">
-          <div className="flex-grow mb-4">
-            <h1 className="text-[#b3b3b3] text-4xl">Gowtham Mallikarjuna</h1>
-          </div>
-          <footer className="flex items-center space-x-4 pt-4 pb-[20px] md:pb-[100px]">
+    <div className="min-h-screen flex justify-center relative">
+      <div className="max-w-[1400px] w-full flex flex-col md:flex-row relative z-10">
+        <aside className="w-full md:w-[30vw] flex flex-col md:sticky md:top-0 md:self-start md:h-screen md:justify-between pt-[100px] pl-4 pb-6">
+          <h1 className="text-[#b3b3b3] text-4xl">Gowtham Mallikarjuna</h1>
+          <footer className="flex items-center space-x-4 pt-8 md:pb-[100px]">
             <a
-              href="https://github.com/gowtham91m"
+              href="https://github.com/gowthamswe"
               target="_blank"
               rel="noopener noreferrer"
+              aria-label="GitHub"
               className="flex items-center text-[#b3b3b3] hover:text-white"
             >
               <AiFillGithub size={24} />
             </a>
             <a
-              href="https://www.linkedin.com/in/gowtham-mallikarjuna/"
+              href="https://www.linkedin.com/in/gowtham-swe/"
               target="_blank"
               rel="noopener noreferrer"
+              aria-label="LinkedIn"
               className="flex items-center text-[#b3b3b3] hover:text-white"
             >
               <AiOutlineLinkedin size={24} />
             </a>
-            <div
-              className="relative group"
-              onMouseEnter={() => setIsHovered(true)}
-              onMouseLeave={() => setIsHovered(false)}
-              onClick={handleCopyEmail}
+            <CopyEmailButton email={EMAIL} />
+            <a
+              href="/resume.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Download resume (PDF)"
+              className="flex items-center text-[#b3b3b3] hover:text-white"
             >
-              {isHovered ? (
-                <AiOutlineCopy size={24} className="text-[#b3b3b3] hover:text-white" />
-              ) : (
-                <AiOutlineMail size={24} className="text-[#b3b3b3] hover:text-white" />
-              )}
-              <span className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 w-max bg-gray-800 text-white text-xs rounded-md px-2 py-1 opacity-0 group-hover:opacity-100 transition-opacity">
-                {tooltipText}
-              </span>
-            </div>
+              <AiOutlineFileText size={24} />
+            </a>
           </footer>
-        </div>
-        <div className="w-full md:w-[70vw] flex flex-col justify-start items-center md:overflow-y-auto md:h-screen pb-10">
-          <div className="pt-[100px] pl-4 md:pl-20 pb-4">
-            <p className="text-[#b3b3b3] text-lg">
-              As a seasoned full stack developer, I bring a wealth of experience in Java, Python, and TypeScript, with a strong focus on the React framework. My proficiency in AWS services, including Lambda, Fargate, EC2, DynamoDB, and S3, empowers me to build robust applications on cloud infrastructure. Leveraging the AWS CDK, I adhere to software development best practices to deliver scalable and efficient solutions.
+        </aside>
+        <main className="w-full md:w-[70vw] flex flex-col pb-10">
+          <section className="pt-[100px] pl-4 md:pl-20 pr-4 pb-4">
+            <h2 className="sr-only">About</h2>
+            <p className="text-[#b3b3b3] text-lg max-w-[70ch]">
+              Software Engineer with 9+ years across Meta and Amazon, focused on large-scale distributed systems, platform security, and experimentation-driven product development. Currently leading security and integrity work for Instagram account recovery — designing policies, running A/B experiments, and prototyping LLM-based remediation. Previously delivered full-stack and cloud infrastructure for Amazon Pharmacy and Amazon Fulfillment.
             </p>
-          </div>
+          </section>
 
-          <div className="pt-12 px-4 pl-5 md:pl-20 text-[#b3b3b3]">
-            <h3 className="text-xl font-bold mb-4">Experience</h3>
-            {experiences.map((exp, index) => (
+          <section className="pt-12 pl-5 md:pl-20 pr-4 text-[#b3b3b3]">
+            <h2 className="text-xl font-bold mb-4">Timeline</h2>
+            {timeline.map((entry, index) => (
               <div key={index} className="flex mb-5 card">
                 <div className="flex flex-col">
                   <span className="font-bold">
-                    {exp.position} <span className="ml-2">({exp.year})</span>
+                    {entry.title} <span className="ml-2">({entry.year})</span>
                   </span>
-                  <span className="mt-2">{exp.description}</span>
-                  <div className="flex flex-wrap mt-2">
-                    {exp.tags.map((tag, tagIndex) => (
-                      <span
-                        key={tagIndex}
-                        className="rounded-full px-4 py-1 m-1 text-teal-600 text-xs font-medium"
-                        style={{ backgroundColor: 'rgba(0, 128, 128, 0.1)' }}
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
+                  {entry.description && (
+                    <span className="mt-2">{entry.description}</span>
+                  )}
+                  {entry.tags && entry.tags.length > 0 && (
+                    <div className="flex flex-wrap mt-2">
+                      {entry.tags.map((tag, tagIndex) => (
+                        <span
+                          key={tagIndex}
+                          className="rounded-full px-4 py-1 m-1 text-teal-600 text-xs font-medium"
+                          style={{ backgroundColor: 'rgba(0, 128, 128, 0.1)' }}
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                  )}
                 </div>
               </div>
             ))}
-          </div>
-        </div>
+          </section>
+        </main>
       </div>
     </div>
   );

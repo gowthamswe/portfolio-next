@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
@@ -12,12 +12,51 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const SITE_URL = "https://gowtham.ai";
+const TITLE = "Gowtham Mallikarjuna — Software Engineer";
+const DESCRIPTION =
+  "Software Engineer with 9+ years across Meta and Amazon. Currently leading security and integrity work for Instagram account recovery.";
+
 export const metadata: Metadata = {
-  title: "Gowtham - Full-Stack Developer Portfolio",
-  description:
-    "Gowtham's portfolio showcasing experience building large-scale distributed systems",
-  keywords: ["Gowtham", "Gowtham Mallikarjuna", "full-stack developer", "Java", "Python", "React", "AWS", "portfolio", "web development"],
-  authors: [{ name: "Gowtham Mallikarjuna" }],
+  metadataBase: new URL(SITE_URL),
+  title: TITLE,
+  description: DESCRIPTION,
+  keywords: [
+    "Gowtham Mallikarjuna",
+    "software engineer",
+    "Meta",
+    "Instagram",
+    "Amazon",
+    "distributed systems",
+    "platform security",
+    "full-stack",
+  ],
+  authors: [{ name: "Gowtham Mallikarjuna", url: SITE_URL }],
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    type: "website",
+    url: SITE_URL,
+    title: TITLE,
+    description: DESCRIPTION,
+    siteName: "gowtham.ai",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: TITLE,
+    description: DESCRIPTION,
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#0f172a",
+  width: "device-width",
+  initialScale: 1,
 };
 
 export default function RootLayout({
