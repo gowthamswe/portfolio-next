@@ -51,6 +51,47 @@ export default function Home() {
           </section>
 
           <section className="pt-12 pl-5 md:pl-20 pr-4 text-[#b3b3b3]">
+            <h2 className="text-xl font-bold mb-4">Projects</h2>
+            <div className="flex mb-5 card">
+              <div className="flex flex-col">
+                <span className="font-bold">
+                  VideoVitals — Chrome Extension <span className="ml-2">(2026)</span>
+                </span>
+                <span className="mt-2">
+                  Surfaces clickbait flags and information-density ratings on YouTube videos, with community averages. Serverless: Firestore via REST (no SDK), MV3 service worker, Google OAuth.
+                </span>
+                <div className="flex flex-wrap mt-2 items-center">
+                  {["Chrome MV3", "Firestore", "OAuth", "JavaScript"].map((tag) => (
+                    <span
+                      key={tag}
+                      className="rounded-full px-4 py-1 m-1 text-teal-600 text-xs font-medium"
+                      style={{ backgroundColor: 'rgba(0, 128, 128, 0.1)' }}
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                  <a
+                    href="https://chromewebstore.google.com/detail/videovitals/glhnmjfkckhhohdomkfkojdhimpncnaj"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="ml-2 text-sm underline hover:text-white"
+                  >
+                    Chrome Web Store
+                  </a>
+                  <a
+                    href="https://github.com/gowthamswe/video-vitals"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="ml-2 text-sm underline hover:text-white"
+                  >
+                    GitHub
+                  </a>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section className="pt-12 pl-5 md:pl-20 pr-4 text-[#b3b3b3]">
             <h2 className="text-xl font-bold mb-4">Timeline</h2>
             {timeline.map((entry, index) => (
               <div key={index} className="flex mb-5 card">
